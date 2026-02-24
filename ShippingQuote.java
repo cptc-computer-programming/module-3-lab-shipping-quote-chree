@@ -1,11 +1,35 @@
 public class ShippingQuote {
 
-    public static void main{String[] args} {
+    public static void main(String[] args) {
+        // Constants 
         int weight = 10;
         int length = 12;
         int height = 8;
         int width = 6;
+
         int maxWeight = 50;
+        double weightRate = 0.75;
+        double sizeRate = 0.60;
+
+
+        int volume = volume(length, height, width);
+        double sizeFactor = sizeFactor(volume);
+        double weightCost = weightCost(weight, weightRate);
+        double sizeCost = sizeCost(sizeFactor, sizeRate);
+        double finalCost = finalCost(weightCost, sizeCost);
+
+        // checks to see if package is overweight then adds 10 to final cost if true
+        boolean isOverWeight = overWeight(weight, maxWeight);
+        if (isOverWeight) {
+            finalCost += 10.0;
+        }
+
+    
+        //Output
+        System.out.println("Volume: " + volume);
+        System.out.println("Size Factor (sqrt volume): " + sizeFactor);
+        System.out.println("Over Weight limit? " + isOverWeight);
+        System.out.println("Final Shipping Cost: $" + finalCost);
     
     }
 
